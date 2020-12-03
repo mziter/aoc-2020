@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/mziter/aoc-2020/day/one"
+	"github.com/mziter/aoc-2020/day/three"
 	"github.com/mziter/aoc-2020/day/two"
 )
 
@@ -21,10 +22,12 @@ type solver interface {
 func main() {
 	flags := parseFlags()
 	solvers := getSolvers()
+
 	start := time.Now()
 	solver := solvers[flags.day-1][flags.part-1]
 	answer := solver.Solve()
 	end := time.Now()
+
 	fmt.Printf("Answer to day %d, part %d is: %s\n", flags.day, flags.part, answer)
 	fmt.Printf("Solved in %s\n", end.Sub(start).String())
 }
@@ -34,6 +37,7 @@ func getSolvers() [][]solver {
 	solvers = make([][]solver, 25)
 	solvers[0] = []solver{one.PartOneSolver{}, one.PartTwoSolver{}}
 	solvers[1] = []solver{two.PartOneSolver{}, two.PartTwoSolver{}}
+	solvers[2] = []solver{three.PartOneSolver{}, three.PartTwoSolver{}}
 	return solvers
 }
 
