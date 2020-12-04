@@ -64,10 +64,6 @@ func (d PartTwoSolver) Solve() string {
 	return strconv.Itoa(treeCount)
 }
 
-func solvePartTwo() string {
-	return "fix me"
-}
-
 func getTreeEncountered(treeLoc map[coordinate]bool, g grid, s slope) int {
 	x := 0
 	y := 0
