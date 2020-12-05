@@ -1,4 +1,4 @@
-# Advent of Code solutions in Go for 2020
+# :gift: :gift: :gift: Advent of Code solutions in Go for 2020 :gift: :gift: :gift:
 
 ### You can run any given day and part by supplying them as arguments
 ```
