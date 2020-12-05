@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/mziter/aoc-2020/day/five"
 	"github.com/mziter/aoc-2020/day/four"
 	"github.com/mziter/aoc-2020/day/one"
 	"github.com/mziter/aoc-2020/day/three"
@@ -40,6 +41,7 @@ func getSolvers() [][]solver {
 	solvers[1] = []solver{two.PartOneSolver{}, two.PartTwoSolver{}}
 	solvers[2] = []solver{three.PartOneSolver{}, three.PartTwoSolver{}}
 	solvers[3] = []solver{four.PartOneSolver{}, four.PartTwoSolver{}}
+	solvers[4] = []solver{five.PartOneSolver{}, five.PartTwoSolver{}}
 	return solvers
 }
 
