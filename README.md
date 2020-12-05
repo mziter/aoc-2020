@@ -12,8 +12,8 @@ Solved in 1.2345ms
 ```
 
 ## Links
-[Day 1](day/one/one.go) . 
-[Day 2](day/two/two.go) . 
-[Day 3](day/three/three.go) . 
-[Day 4](day/four/four.go) .  
-[Day 5](day/five/five.go) .  
+* [Day 1](day/one/one.go) 
+* [Day 2](day/two/two.go)
+* [Day 3](day/three/three.go)
+* [Day 4](day/four/four.go)
+* [Day 5](day/five/five.go)
