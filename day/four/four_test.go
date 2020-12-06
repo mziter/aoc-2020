@@ -3,6 +3,8 @@ package four
 import (
 	"strings"
 	"testing"
+
+	"github.com/mziter/aoc-2020/common"
 )
 
 func TestValidPartOnePassport(t *testing.T) {
@@ -52,7 +54,7 @@ hgt:179cm
 hcl:#cfa07d eyr:2025 pid:166559648
 iyr:2011 ecl:brn hgt:59in`
 	lines := strings.Split(input, "\n")
-	passports := getPassports(lines)
+	passports := common.SplitLines(lines)
 	if len(passports) != 4 {
 		t.Errorf("Expected four passports but there were actually %d", len(passports))
 	}
