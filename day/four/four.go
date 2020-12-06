@@ -21,7 +21,7 @@ func (d PartOneSolver) Solve() string {
 	if err != nil {
 		panic("Could not open input file for day four")
 	}
-	passports := getPassports(lines)
+	passports := common.SplitLines(lines)
 	count := 0
 	for _, p := range passports {
 		if validPartOnePassport(p) {
@@ -37,7 +37,7 @@ func (d PartTwoSolver) Solve() string {
 	if err != nil {
 		panic("Could not open input file for day four")
 	}
-	passports := getPassports(lines)
+	passports := common.SplitLines(lines)
 	count := 0
 	for _, p := range passports {
 		if validPartTwoPassport(p) {
@@ -45,23 +45,6 @@ func (d PartTwoSolver) Solve() string {
 		}
 	}
 	return strconv.Itoa(count)
-}
-
-func getPassports(lines []string) [][]string {
-	passports := make([][]string, 0)
-	currentPassport := make([]string, 0)
-	for _, line := range lines {
-		if line == "" {
-			passports = append(passports, currentPassport)
-			currentPassport = make([]string, 0)
-		} else {
-			currentPassport = append(currentPassport, line)
-		}
-	}
-	if len(currentPassport) > 0 {
-		passports = append(passports, currentPassport)
-	}
-	return passports
 }
 
 func validPartOnePassport(lines []string) bool {

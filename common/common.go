@@ -21,6 +21,23 @@ func GetLines(filename string) ([]string, error) {
 	return lines, nil
 }
 
+func SplitLines(lines []string) [][]string {
+	splits := make([][]string, 0)
+	currentSplit := make([]string, 0)
+	for _, line := range lines {
+		if line == "" {
+			splits = append(splits, currentSplit)
+			currentSplit = make([]string, 0)
+		} else {
+			currentSplit = append(currentSplit, line)
+		}
+	}
+	if len(currentSplit) > 0 {
+		splits = append(splits, currentSplit)
+	}
+	return splits
+}
+
 func GetIntLines(filename string) ([]int, error) {
 	lines, err := GetLines(filename)
 	if err != nil {
