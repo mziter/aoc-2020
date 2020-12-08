@@ -24,3 +24,4 @@ Solved in 1.2345ms
 * [Day 5](day/five/five.go)
 * [Day 6](day/six/six.go)
 * [Day 7](day/seven/seven.go)
+* [Day 8](day/eight/eight.go)
