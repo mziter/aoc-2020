@@ -6,12 +6,14 @@ import (
 	"time"
 
 	"github.com/mziter/aoc-2020/day/eight"
+	"github.com/mziter/aoc-2020/day/eleven"
 	"github.com/mziter/aoc-2020/day/five"
 	"github.com/mziter/aoc-2020/day/four"
 	"github.com/mziter/aoc-2020/day/nine"
 	"github.com/mziter/aoc-2020/day/one"
 	"github.com/mziter/aoc-2020/day/seven"
 	"github.com/mziter/aoc-2020/day/six"
+	"github.com/mziter/aoc-2020/day/ten"
 	"github.com/mziter/aoc-2020/day/three"
 	"github.com/mziter/aoc-2020/day/two"
 )
@@ -50,6 +52,8 @@ func getSolvers() [][]solver {
 	solvers[6] = []solver{seven.PartOneSolver{}, seven.PartTwoSolver{}}
 	solvers[7] = []solver{eight.PartOneSolver{}, eight.PartTwoSolver{}}
 	solvers[8] = []solver{nine.PartOneSolver{}, nine.PartTwoSolver{}}
+	solvers[9] = []solver{ten.PartOneSolver{}, ten.PartTwoSolver{}}
+	solvers[10] = []solver{eleven.PartOneSolver{}, eleven.PartTwoSolver{}}
 	return solvers
 }
 

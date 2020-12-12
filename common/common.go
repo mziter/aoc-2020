@@ -2,6 +2,9 @@ package common
 
 import (
 	"bufio"
+	"bytes"
+	"io"
+	"io/ioutil"
 	"os"
 	"strconv"
 )
@@ -19,6 +22,22 @@ func GetLines(filename string) ([]string, error) {
 		lines = append(lines, text)
 	}
 	return lines, nil
+}
+
+func GetBytesFromFile(filename string) ([][]byte, error) {
+	file, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	return GetBytes(file)
+}
+
+func GetBytes(r io.Reader) ([][]byte, error) {
+	data, err := ioutil.ReadAll(r)
+	if err != nil {
+		return nil, err
+	}
+	return bytes.Split(data, []byte("\n")), nil
 }
 
 func SplitLines(lines []string) [][]string {
