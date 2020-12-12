@@ -82,12 +82,9 @@ func TestNewRoundTwoVision(t *testing.T) {
 	got, changes := newRoundWithVision(roundOne)
 	if !reflect.DeepEqual(want, got) {
 		t.Error("result of next round was not what was expected")
-		print(want)
-		fmt.Println()
-		print(got)
 	}
-	if changes != 63 {
-		t.Errorf("expected number of changes to be 51, but was %d", changes)
+	if changes != 64 {
+		t.Errorf("expected number of changes to be 64, but was %d", changes)
 	}
 }
 
