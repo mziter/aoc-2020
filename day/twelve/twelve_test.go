@@ -58,6 +58,28 @@ func TestTurnRight(t *testing.T) {
 	}
 }
 
+func TestRotateRight(t *testing.T) {
+	tests := []struct {
+		wp      waypoint
+		degrees int
+		want    waypoint
+	}{
+		{waypoint{deltaX: 3, deltaY: 1}, 90, waypoint{deltaX: 1, deltaY: -3}},
+		{waypoint{deltaX: 1, deltaY: -3}, 90, waypoint{deltaX: -3, deltaY: -1}},
+		{waypoint{deltaX: -3, deltaY: -1}, 90, waypoint{deltaX: -1, deltaY: 3}},
+		{waypoint{deltaX: -1, deltaY: 3}, 90, waypoint{deltaX: 3, deltaY: 1}},
+	}
+
+	for _, tt := range tests {
+		t.Run(fmt.Sprintf("%v rotate by %d°", tt.wp, tt.degrees), func(t *testing.T) {
+			got := rotateRight(tt.wp, tt.degrees)
+			if got != tt.want {
+				t.Errorf("expected rotate right of %d° from %v to be %v, not %v", tt.degrees, tt.wp, tt.want, got)
+			}
+		})
+	}
+}
+
 func TestTurnLeft(t *testing.T) {
 	tests := []struct {
 		facing  rune

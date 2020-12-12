@@ -15,6 +15,16 @@ type position struct {
 	facing rune
 }
 
+type waypoint struct {
+	deltaX int
+	deltaY int
+}
+
+type coord struct {
+	x int
+	y int
+}
+
 type (
 	// PartOneSolver implements solver interface for part one
 	PartOneSolver struct{}
@@ -42,7 +52,21 @@ func (d PartOneSolver) Solve() string {
 
 // Solve implements solver interface for part one
 func (d PartTwoSolver) Solve() string {
-	return "not implemented"
+	instructions, err := common.GetLines("day/twelve/input.txt")
+	if err != nil {
+		panic("couldn't read input file for day twelve")
+	}
+
+	c := coord{x: 0, y: 0}
+	wp := waypoint{deltaX: 10, deltaY: 1}
+	for _, i := range instructions {
+		c, wp = executeWaypointInstruction(i, c, wp)
+	}
+
+	deltaX := int(math.Abs(float64(c.x)))
+	deltaY := int(math.Abs(float64(c.y)))
+
+	return strconv.Itoa(deltaX + deltaY)
 }
 
 func executeInstruction(instruction string, p position) position {
@@ -71,6 +95,50 @@ func executeInstruction(instruction string, p position) position {
 	default:
 		panic("encountered a bad instruction")
 	}
+}
+
+func executeWaypointInstruction(instruction string, c coord, wp waypoint) (coord, waypoint) {
+	action := instruction[0]
+	strVal := instruction[1:]
+	value, err := strconv.Atoi(strVal)
+	if err != nil {
+		panic("couldn't convert string to number")
+	}
+
+	switch action {
+	// adjust waypoint by amount
+	case 'N':
+		return c, waypoint{deltaX: wp.deltaX, deltaY: wp.deltaY + value}
+	case 'S':
+		return c, waypoint{deltaX: wp.deltaX, deltaY: wp.deltaY - value}
+	case 'E':
+		return c, waypoint{deltaX: wp.deltaX + value, deltaY: wp.deltaY}
+	case 'W':
+		return c, waypoint{deltaX: wp.deltaX - value, deltaY: wp.deltaY}
+	// rotations
+	case 'R':
+		return c, rotateRight(wp, value)
+	case 'L':
+		return c, rotateLeft(wp, value)
+	// execute waypoint N (value) times
+	case 'F':
+		return coord{x: c.x + (value * wp.deltaX), y: c.y + (value * wp.deltaY)}, wp
+	default:
+		panic("encountered a bad instruction")
+	}
+}
+
+func rotateLeft(wp waypoint, degrees int) waypoint {
+	return rotateRight(wp, 360-degrees)
+}
+
+func rotateRight(wp waypoint, degrees int) waypoint {
+	d := degrees % 360
+	for d > 0 {
+		wp = waypoint{deltaX: wp.deltaY, deltaY: -(wp.deltaX)}
+		d -= 90
+	}
+	return wp
 }
 
 func turnLeft(initial rune, degree int) rune {
